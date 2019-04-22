@@ -81,7 +81,7 @@ public class AlarmUtil implements Listener {
             if(check.getViolationLevel(player) >= check.kick_max)
             {
                 check.ResetViolationLevel(player);
-                player.kickPlayer("");
+                player.kickPlayer("§7[§cAC§7] \n" + "§7You were kicked for using cheats. [" + check.name+"]");
             }
         }
         if (!CheckManager.Enable_SetBacks) {
@@ -113,7 +113,7 @@ public class AlarmUtil implements Listener {
             if(check.getViolationLevel(player) >= check.kick_max)
             {
                 check.ResetViolationLevel(player);
-                player.kickPlayer("");
+                player.kickPlayer("§7[§cAC§7] \n" + "§7You were kicked for using cheats. [" + check.name+"]");
             }
         }
 

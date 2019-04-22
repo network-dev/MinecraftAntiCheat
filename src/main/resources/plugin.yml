@@ -1,0 +1,8 @@
+name: AntiCheat
+version: ${project.version}
+main: me.sendpacket.anticheat.anticheat.AntiCheat
+api-version: 1.13
+commands:
+  ac:
+    description: Opens the AntiCheat menu.
+    usage: /ac

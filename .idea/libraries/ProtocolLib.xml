@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="ProtocolLib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../Server/plugins/ProtocolLib.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../Server/Spigot-1.12.2-642f6d2_57ab4cf-20180620-0518.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../ProtocolLib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Spigot-1.12.2-79a30d7-20190219-1130.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

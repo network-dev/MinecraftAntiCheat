@@ -124,14 +124,16 @@ public class Listener implements org.bukkit.event.Listener {
     {
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(AntiCheat.Plugin, new Runnable() {
             public void run() {
-                for(Check c : CheckManager.CheckList) {
-                    c.onTickUpdate();
-                    if(c.SubCheckList.size() > 0) {
-                        for (SubCheck sc : c.SubCheckList) {
-                            sc.onTickUpdate();
+                try {
+                    for (Check c : CheckManager.CheckList) {
+                        c.onTickUpdate();
+                        if (c.SubCheckList.size() > 0) {
+                            for (SubCheck sc : c.SubCheckList) {
+                                sc.onTickUpdate();
+                            }
                         }
                     }
-                }
+                }catch (Exception e){};
             }
         }, 0, 1L);
     }
@@ -139,14 +141,16 @@ public class Listener implements org.bukkit.event.Listener {
     {
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(AntiCheat.Plugin, new Runnable() {
             public void run() {
-                for(Check c : CheckManager.CheckList) {
-                    c.on20TickUpdate();
-                    if(c.SubCheckList.size() > 0) {
-                        for (SubCheck sc : c.SubCheckList) {
-                            sc.on20TickUpdate();
+                try {
+                    for (Check c : CheckManager.CheckList) {
+                        c.on20TickUpdate();
+                        if (c.SubCheckList.size() > 0) {
+                            for (SubCheck sc : c.SubCheckList) {
+                                sc.on20TickUpdate();
+                            }
                         }
                     }
-                }
+                }catch (Exception e){};
             }
         }, 0, 20L);
     }
@@ -161,16 +165,18 @@ public class Listener implements org.bukkit.event.Listener {
                 PacketType.Play.Client.POSITION) {
             @Override
             public void onPacketReceiving(PacketEvent event) {
-                if(event.getPacket() != null) {
-                    for (Check c : CheckManager.CheckList) {
-                        c.onPacketReceiving(event);
-                        if (c.SubCheckList.size() > 0) {
-                            for (SubCheck sc : c.SubCheckList) {
-                                sc.onPacketReceiving(event);
+                try {
+                    if (event.getPacket() != null) {
+                        for (Check c : CheckManager.CheckList) {
+                            c.onPacketReceiving(event);
+                            if (c.SubCheckList.size() > 0) {
+                                for (SubCheck sc : c.SubCheckList) {
+                                    sc.onPacketReceiving(event);
+                                }
                             }
                         }
                     }
-                }
+                }catch(Exception e){}
             }
         });
     }

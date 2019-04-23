@@ -165,18 +165,14 @@ public class Listener implements org.bukkit.event.Listener {
                 PacketType.Play.Client.POSITION) {
             @Override
             public void onPacketReceiving(PacketEvent event) {
-                try {
-                    if (event.getPacket() != null) {
-                        for (Check c : CheckManager.CheckList) {
-                            c.onPacketReceiving(event);
-                            if (c.SubCheckList.size() > 0) {
-                                for (SubCheck sc : c.SubCheckList) {
-                                    sc.onPacketReceiving(event);
-                                }
-                            }
+                for (Check c : CheckManager.CheckList) {
+                    c.onPacketReceiving(event);
+                    if (c.SubCheckList.size() > 0) {
+                        for (SubCheck sc : c.SubCheckList) {
+                            sc.onPacketReceiving(event);
                         }
                     }
-                }catch(Exception e){}
+                }
             }
         });
     }
@@ -184,13 +180,11 @@ public class Listener implements org.bukkit.event.Listener {
         ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(AntiCheat.Plugin, PacketType.Play.Server.ANIMATION) {
             @Override
             public void onPacketSending(PacketEvent event) {
-                if(event.getPacket() != null) {
-                    for (Check c : CheckManager.CheckList) {
-                        c.onPacketSending(event);
-                        if (c.SubCheckList.size() > 0) {
-                            for (SubCheck sc : c.SubCheckList) {
-                                sc.onPacketSending(event);
-                            }
+                for (Check c : CheckManager.CheckList) {
+                    c.onPacketSending(event);
+                    if (c.SubCheckList.size() > 0) {
+                        for (SubCheck sc : c.SubCheckList) {
+                            sc.onPacketSending(event);
                         }
                     }
                 }

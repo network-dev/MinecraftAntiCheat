@@ -25,6 +25,8 @@ public class AnalyzerManager implements Listener {
             {
                 bw.write(s);
             }
+            bw.close();
+            fos.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

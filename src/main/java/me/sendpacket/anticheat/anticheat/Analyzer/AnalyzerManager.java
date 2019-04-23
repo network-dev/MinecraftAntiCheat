@@ -12,27 +12,42 @@ import java.io.*;
 
 public class AnalyzerManager implements Listener {
 
-    public static void WriteFileLine(Player p, String data)
+    public static boolean is_enabled = false;
+
+    public static void WriteFile(Player p)
     {
         File file = new File(AntiCheat.Plugin.getDataFolder(), "Analyzed_" + p.getName() + ".txt");
         try {
             file.createNewFile();
             FileOutputStream fos = new FileOutputStream(file);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-            bw.write(data);
+            for(String s : AnalyzeLogger.getAnalyzedLog(p))
+            {
+                bw.write(s);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @EventHandler
-    public void onMove(PlayerMoveEvent event)
+    public static void OutputLog()
     {
-        Player player = event.getPlayer();
-        Location temp_loc_player = new Location(player.getWorld(),event.getFrom().getX(),0, event.getFrom().getZ());
-        Location temp_loc_entity = new Location(player.getWorld(),event.getTo().getX(),0, event.getTo().getZ());
-        double clean_dist = temp_loc_player.distance(temp_loc_entity);
-        AnalyzeLogger.LogPlayer(event.getPlayer(), clean_dist);
+        for(Player p : Bukkit.getOnlinePlayers())
+        {
+            WriteFile(p);
+        }
+
+        AnalyzeLogger.AnalyzePlayers.clear();
     }
 
+    @EventHandler
+    public void onMove(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        if (is_enabled) {
+            Location temp_loc_player = new Location(player.getWorld(), event.getFrom().getX(), 0, event.getFrom().getZ());
+            Location temp_loc_entity = new Location(player.getWorld(), event.getTo().getX(), 0, event.getTo().getZ());
+            double clean_dist = temp_loc_player.distance(temp_loc_entity);
+            AnalyzeLogger.LogPlayer(event.getPlayer(), clean_dist);
+        }
+    }
 }

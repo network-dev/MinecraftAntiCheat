@@ -1,5 +1,6 @@
 package me.sendpacket.anticheat.anticheat.Utils;
 
+import me.sendpacket.anticheat.anticheat.Analyzer.AnalyzerManager;
 import me.sendpacket.anticheat.anticheat.Checks.Check;
 import me.sendpacket.anticheat.anticheat.Checks.CheckCategory;
 import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
@@ -70,6 +71,7 @@ public class MenuUtil {
     {
         Inventory inv = Bukkit.createInventory(null, 9, Menu_Title);
         inv.setItem(1, getItem(Material.WATCH, "§aChecks"));
+        inv.setItem(4, getItem(Material.PAPER, "§6Analyze"));
         inv.setItem(7, getItem(Material.COMPASS, "§cSettings"));
         return inv;
     }
@@ -181,6 +183,16 @@ public class MenuUtil {
                         case "§aChecks":
                             Inventory_State = 1;
                             UpdateInventory(player);
+                            break;
+                        case "§6Analyze":
+                            AnalyzerManager.is_enabled = !AnalyzerManager.is_enabled;
+                            if(!AnalyzerManager.is_enabled)
+                            {
+                                player.sendMessage("§7[§cAC§7] §7Movements from all the players analyzed and saved.");
+                                AnalyzerManager.OutputLog();
+                            }else{
+                                player.sendMessage("§7[§cAC§7] §7Analyzing...");
+                            }
                             break;
                         case "§cSettings":
                             Inventory_State = 5;

@@ -1,5 +1,6 @@
 package me.sendpacket.anticheat.anticheat;
 
+import me.sendpacket.anticheat.anticheat.Analyzer.AnalyzerManager;
 import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
 import me.sendpacket.anticheat.anticheat.Checks.Other.Timer;
 import me.sendpacket.anticheat.anticheat.Menu.MenuEvents;
@@ -19,6 +20,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 public final class AntiCheat extends JavaPlugin implements Listener {
 
     public static JavaPlugin Plugin;
@@ -26,11 +29,14 @@ public final class AntiCheat extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
        this.Plugin = this; // To be used by other classes
-
+       if(!this.getDataFolder().exists())
+       {
+           this.getDataFolder().mkdirs();
+       }
        Bukkit.getServer().getPluginManager().registerEvents(new me.sendpacket.anticheat.anticheat.Listener(), this);
        Bukkit.getPluginManager().registerEvents(new MenuEvents(), this); // Used to handle interactions with the menu
        Bukkit.getPluginManager().registerEvents(new AlarmUtil(), this);
-
+       Bukkit.getPluginManager().registerEvents(new AnalyzerManager(), this);
        me.sendpacket.anticheat.anticheat.Listener.Setup();
        AlarmUtil.UpdateAvoidTimer();
        CheckManager.Load(this);

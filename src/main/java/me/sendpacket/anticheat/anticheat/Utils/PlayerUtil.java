@@ -3,6 +3,7 @@ package me.sendpacket.anticheat.anticheat.Utils;
 import net.minecraft.server.v1_12_R1.EntityPlayer;
 import net.minecraft.server.v1_12_R1.Item;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -10,6 +11,7 @@ import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.*;
 import org.bukkit.util.Vector;
 
 import java.util.Random;
@@ -282,23 +284,23 @@ public class PlayerUtil {
             rotation += 360.0;
         }
         if (0 <= rotation && rotation < 22.5) {
-            return "N";
-        } else if (22.5 <= rotation && rotation < 67.5) {
-            return "NE";
-        } else if (67.5 <= rotation && rotation < 112.5) {
-            return "E";
-        } else if (112.5 <= rotation && rotation < 157.5) {
-            return "SE";
-        } else if (157.5 <= rotation && rotation < 202.5) {
-            return "S";
-        } else if (202.5 <= rotation && rotation < 247.5) {
-            return "SW";
-        } else if (247.5 <= rotation && rotation < 292.5) {
             return "W";
-        } else if (292.5 <= rotation && rotation < 337.5) {
+        } else if (22.5 <= rotation && rotation < 67.5) {
             return "NW";
-        } else if (337.5 <= rotation && rotation < 360.0) {
+        } else if (67.5 <= rotation && rotation < 112.5) {
             return "N";
+        } else if (112.5 <= rotation && rotation < 157.5) {
+            return "NE";
+        } else if (157.5 <= rotation && rotation < 202.5) {
+            return "E";
+        } else if (202.5 <= rotation && rotation < 247.5) {
+            return "SE";
+        } else if (247.5 <= rotation && rotation < 292.5) {
+            return "S";
+        } else if (292.5 <= rotation && rotation < 337.5) {
+            return "SW";
+        } else if (337.5 <= rotation && rotation < 360.0) {
+            return "W";
         } else {
             return null;
         }
@@ -314,6 +316,7 @@ public class PlayerUtil {
                 break;
             case "NE":
                 loc = p.getLocation().add(distance,0,-distance);
+                break;
             case "E":
                 loc = p.getLocation().add(distance,0,0);
                 break;

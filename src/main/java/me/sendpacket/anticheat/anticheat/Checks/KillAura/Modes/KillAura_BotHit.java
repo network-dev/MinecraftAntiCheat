@@ -37,7 +37,7 @@ public class KillAura_BotHit  extends SubCheck implements Listener {
     public void onTickUpdate() {
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (PlayerNPC.get(p) != null) {
-                PlayerNPC.get(p).teleport(PlayerUtil.getBlockBehindPlayer(p, 2), false);
+                PlayerNPC.get(p).teleport(PlayerUtil.getLocationFront(p, -2), false);
             }
             NPCTimer.put(p, NPCTimer.get(p) != null ? NPCTimer.get(p) + 1 : 1);
             if (NPCTimer.get(p) > 10) {

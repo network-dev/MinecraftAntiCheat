@@ -16,6 +16,8 @@ import me.sendpacket.anticheat.anticheat.Utils.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -47,10 +49,19 @@ public class Scaffold extends Check implements Listener {
     {
         if (LastPitch.get(event.getPlayer()) != null && LastSpeed.get(event.getPlayer()) != null) {
             double diff = MathUtil.GetDistanceBetween2Numbers(event.getPlayer().getLocation().getPitch(), LastPitch.get(event.getPlayer()));
-            if (diff > 40 || LastSpeed.get(event.getPlayer()) > 0.20) {
-                AlarmUtil.AddViolation(event.getPlayer(), this, "Diff: " + diff + " Speed: " + LastSpeed.get(event.getPlayer()));
-                event.getPlayer().sendMessage(ChatColor.GREEN + "Diff: " + diff + " Speed: " + LastSpeed.get(event.getPlayer()));
-                event.getPlayer().sendMessage("EventPitch: " + event.getPlayer().getLocation().getPitch() + " LastPitch: " + LastPitch.get(event.getPlayer()));
+            if (diff > 40 || LastSpeed.get(event.getPlayer()) > 0.20)
+            {
+                Block placed_b = event.getBlockPlaced();
+                if(placed_b != null)
+                {
+                    Location loc_front = PlayerUtil.getLocationFront(event.getPlayer(), 0).add(0,-1,0);
+                    Block predicted_block = event.getPlayer().getWorld().getBlockAt(loc_front);
+                    if(predicted_block != null) {
+                        if (placed_b.getLocation().equals(predicted_block.getLocation()) && placed_b.getLocation().add(0,-1,0).getBlock().getType() == Material.AIR) {
+                            AlarmUtil.AddViolation(event.getPlayer(), this, "Diff: " + diff + " Speed: " + LastSpeed.get(event.getPlayer()));
+                        }
+                    }
+                }
             }
         }
     }

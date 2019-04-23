@@ -16,12 +16,12 @@ public class KillAura extends Check implements Listener {
     }
 
     public void onEnable() {
-        SubCheckList.add(CheckManager.KillAura_AntiBotDetection);
         SubCheckList.add(CheckManager.KillAura_BotHit);
         SubCheckList.add(CheckManager.KillAura_CPS);
         SubCheckList.add(CheckManager.KillAura_Criticals);
         SubCheckList.add(CheckManager.KillAura_KeepSprint);
         SubCheckList.add(CheckManager.KillAura_Reach);
         SubCheckList.add(CheckManager.KillAura_WallHit);
+        SubCheckList.add(CheckManager.KillAura_AntiBotDetection);
     }
 }

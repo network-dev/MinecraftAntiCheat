@@ -104,10 +104,6 @@ public class KillAura_AntiBotDetection extends SubCheck {
         if(event.getPacket().getType().equals(PacketType.Play.Client.USE_ITEM)) {
             Player player = event.getPlayer();
 
-            try{
-
-            }catch(Exception e){}
-            
             int targetID = event.getPacket().getIntegers().read(0);
 
             if (BotList.get(player) != null) {

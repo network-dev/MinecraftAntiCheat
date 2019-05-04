@@ -18,7 +18,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.util.Vector;
 
-public class KillAura_Reach extends SubCheck implements Listener {
+public class KillAura_Reach extends SubCheck {
     public KillAura_Reach() {
         super("KillAura Reach", CheckManager.KillAura_Check);
     }

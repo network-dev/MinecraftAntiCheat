@@ -21,7 +21,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 
-public class Timer extends Check implements Listener {
+public class Timer extends Check {
     public Timer() {
         super("Packets", "Checks if the player is sending more packets than normal.", CheckCategory.OTHER, 10);
     }

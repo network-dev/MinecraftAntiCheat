@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 
-public class FastUse extends Check implements Listener {
+public class FastUse extends Check {
     public FastUse() {
         super("FastUse", "Checks if the player is using consumable items too fast.", CheckCategory.MOVEMENT, 10);
     }

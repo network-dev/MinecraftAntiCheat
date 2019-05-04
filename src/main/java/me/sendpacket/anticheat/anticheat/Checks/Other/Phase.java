@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 
-public class Phase extends Check implements Listener {
+public class Phase extends Check {
     public Phase() {
         super("Phase", "Checks if the player is going throught a block.", CheckCategory.MOVEMENT, 20);
     }

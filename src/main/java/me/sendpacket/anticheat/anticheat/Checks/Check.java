@@ -57,7 +57,7 @@ public class Check {
     public void onBlockPlace(BlockPlaceEvent event){};
     public void onItemConsume(PlayerItemConsumeEvent event){};
     public void onEntityShootBow(EntityShootBowEvent event){};
-    public void onInventoryMove(InventoryClickEvent event){};
+    public void onInventoryClick(InventoryClickEvent event){};
     public void onTickUpdate(){};
     public void on20TickUpdate(){};
     public void onPacketReceiving(PacketEvent event) {};

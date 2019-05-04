@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 
-public class KillAura_Criticals extends SubCheck implements Listener {
+public class KillAura_Criticals extends SubCheck {
     public KillAura_Criticals() {
         super("KillAura Criticals", CheckManager.KillAura_Check);
     }

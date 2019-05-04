@@ -10,8 +10,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class MenuEvents implements Listener {
 
-    @EventHandler
-    public void onMenuClose(InventoryCloseEvent event)
+    public static void onMenuClose(InventoryCloseEvent event)
     {
         Player player = (Player) event.getPlayer();
         if(event.getInventory().getTitle().equalsIgnoreCase(MenuUtil.Menu_Title))
@@ -20,8 +19,7 @@ public class MenuEvents implements Listener {
         }
     }
 
-    @EventHandler
-    public void onFakeMenuOpen(PlayerInteractEvent event)
+    public static void onPlayerInteract(PlayerInteractEvent event)
     {
         if(event.getClickedBlock() != null)
         {
@@ -29,8 +27,7 @@ public class MenuEvents implements Listener {
         }
     }
 
-    @EventHandler
-    public void onMenuClick(InventoryClickEvent event) {
+    public static void onInventoryClick(InventoryClickEvent event) {
         try {
             Player player = (Player) event.getWhoClicked();
             if (event.getClickedInventory().getTitle().length() > 0) {

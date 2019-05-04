@@ -22,7 +22,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
 
-public class Speed_FastSpeed extends SubCheck implements Listener {
+public class Speed_FastSpeed extends SubCheck {
     public Speed_FastSpeed() {
         super("Speed_FastSpeed", CheckManager.Speed_Check);
     }

@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 
-public class NoGround extends Check implements Listener {
+public class NoGround extends Check {
     public NoGround() {
         super("NoGround", "Checks if the player is sending air packets while being on the ground.", CheckCategory.MOVEMENT, 20);
     }

@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 
-public class AimAssist extends Check implements Listener {
+public class AimAssist extends Check {
     public AimAssist() {
         super("AimAssist", "Checks if the player is sending rotations that are too smooth.", CheckCategory.COMBAT, 10);
     }

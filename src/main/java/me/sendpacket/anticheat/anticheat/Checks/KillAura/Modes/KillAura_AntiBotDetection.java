@@ -1,40 +1,21 @@
 package me.sendpacket.anticheat.anticheat.Checks.KillAura.Modes;
 
 import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.ListenerPriority;
-import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
 import me.sendpacket.anticheat.anticheat.AntiCheat;
-import me.sendpacket.anticheat.anticheat.Checks.Check;
-import me.sendpacket.anticheat.anticheat.Checks.CheckCategory;
 import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
-import me.sendpacket.anticheat.anticheat.Checks.KillAura.KillAura;
 import me.sendpacket.anticheat.anticheat.Checks.SubCheck;
 import me.sendpacket.anticheat.anticheat.Utils.AlarmUtil;
 import me.sendpacket.anticheat.anticheat.Utils.NPC;
 import me.sendpacket.anticheat.anticheat.Utils.PlayerUtil;
-import net.minecraft.server.v1_12_R1.EnumItemSlot;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityShootBowEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 
-public class KillAura_AntiBotDetection extends SubCheck implements Listener {
+public class KillAura_AntiBotDetection extends SubCheck {
     public KillAura_AntiBotDetection() {
         super("KillAura AntiBotDetection", CheckManager.KillAura_Check);
     }
@@ -123,6 +104,10 @@ public class KillAura_AntiBotDetection extends SubCheck implements Listener {
         if(event.getPacket().getType().equals(PacketType.Play.Client.USE_ITEM)) {
             Player player = event.getPlayer();
 
+            try{
+
+            }catch(Exception e){}
+            
             int targetID = event.getPacket().getIntegers().read(0);
 
             if (BotList.get(player) != null) {

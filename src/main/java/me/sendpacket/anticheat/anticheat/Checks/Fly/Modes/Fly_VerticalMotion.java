@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 
-public class Fly_VerticalMotion extends SubCheck implements Listener {
+public class Fly_VerticalMotion extends SubCheck {
     public Fly_VerticalMotion() {
         super("Fly VerticalMotion", CheckManager.Fly_Check);
     }

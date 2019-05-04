@@ -30,7 +30,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 
-public class Scaffold extends Check implements Listener {
+public class Scaffold extends Check {
     public Scaffold() {
         super("Scaffold", "Checks if the player is building bridges faster than normal.", CheckCategory.MOVEMENT, 10);
     }

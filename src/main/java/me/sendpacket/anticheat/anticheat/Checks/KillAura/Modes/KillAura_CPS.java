@@ -23,7 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 
-public class KillAura_CPS extends SubCheck implements Listener {
+public class KillAura_CPS extends SubCheck {
     public KillAura_CPS() {
         super("KillAura CPS", CheckManager.KillAura_Check);
     }

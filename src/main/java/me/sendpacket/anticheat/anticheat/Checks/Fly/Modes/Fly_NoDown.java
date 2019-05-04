@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 
-public class Fly_NoDown extends SubCheck implements Listener {
+public class Fly_NoDown extends SubCheck {
     public Fly_NoDown() {
         super("Fly NoDown", CheckManager.Fly_Check);
     }

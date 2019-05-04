@@ -16,7 +16,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-public class KillAura_WallHit extends SubCheck implements Listener {
+public class KillAura_WallHit extends SubCheck {
     public KillAura_WallHit() {
         super("KillAura WallHit", CheckManager.KillAura_Check);
     }

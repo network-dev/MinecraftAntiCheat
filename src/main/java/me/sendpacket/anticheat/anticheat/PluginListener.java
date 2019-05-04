@@ -3,23 +3,25 @@ package me.sendpacket.anticheat.anticheat;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketAdapter;
-import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import me.sendpacket.anticheat.anticheat.Checks.Check;
 import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
 import me.sendpacket.anticheat.anticheat.Checks.SubCheck;
+import me.sendpacket.anticheat.anticheat.Menu.MenuEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-public class Listener implements org.bukkit.event.Listener {
+public class PluginListener implements Listener {
 
     public static void Setup() {
         onTickUpdate();
@@ -27,6 +29,7 @@ public class Listener implements org.bukkit.event.Listener {
         addPacketReceivingListener();
         addPacketSendingListener();
     }
+
     @EventHandler
     public void onMoveEvent(PlayerMoveEvent event){
         for(Check c : CheckManager.CheckList) {
@@ -52,6 +55,7 @@ public class Listener implements org.bukkit.event.Listener {
                 }
             }
         }
+        MenuEvents.onPlayerInteract(event);
     }
     @EventHandler
     public void onEnityDamageByEntity(EntityDamageByEntityEvent event){
@@ -109,15 +113,20 @@ public class Listener implements org.bukkit.event.Listener {
         }
     }
     @EventHandler
-    public void onInventoryMove(InventoryClickEvent event){
+    public void onInventoryClick(InventoryCloseEvent event){
+        MenuEvents.onMenuClose(event);
+    }
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent event){
         for(Check c : CheckManager.CheckList) {
-            c.onInventoryMove(event);
+            c.onInventoryClick(event);
             if(c.SubCheckList.size() > 0) {
                 for (SubCheck sc : c.SubCheckList) {
-                    sc.onInventoryMove(event);
+                    sc.onInventoryClick(event);
                 }
             }
         }
+        MenuEvents.onInventoryClick(event);
     }
 
     public static void onTickUpdate()

@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 
-public class Fly_Gravity extends SubCheck implements Listener {
+public class Fly_Gravity extends SubCheck {
     public Fly_Gravity() { super("Fly Gravity", CheckManager.Fly_Check); }
 
     public static HashMap<Player, Double> PlayerList = new HashMap<>();

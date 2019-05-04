@@ -19,7 +19,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 
-public class Fly_FallCycle extends SubCheck implements Listener {
+public class Fly_FallCycle extends SubCheck {
     public Fly_FallCycle() {
         super("Fly FallCycle", CheckManager.Fly_Check);
     }

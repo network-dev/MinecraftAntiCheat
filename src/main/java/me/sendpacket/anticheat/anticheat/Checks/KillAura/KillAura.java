@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
 
-public class KillAura extends Check implements Listener {
+public class KillAura extends Check {
     public KillAura() {
         super("KillAura", "Checks if the player has an advantage over other entities.", CheckCategory.COMBAT, 10);
     }

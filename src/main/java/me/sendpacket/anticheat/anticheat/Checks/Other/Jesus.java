@@ -17,7 +17,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 
-public class Jesus extends Check implements Listener {
+public class Jesus extends Check {
     public Jesus() {
         super("Jesus", "Checks if the player is floating above water or lava.", CheckCategory.MOVEMENT, 10);
     }

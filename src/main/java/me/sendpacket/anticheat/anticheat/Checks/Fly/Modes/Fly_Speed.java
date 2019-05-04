@@ -17,7 +17,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 
-public class Fly_Speed extends SubCheck implements Listener {
+public class Fly_Speed extends SubCheck {
     public Fly_Speed() {
         super("Fly Speed", CheckManager.Fly_Check);
     }

@@ -19,13 +19,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 
-public class InventoryMove extends Check implements Listener {
+public class InventoryMove extends Check {
     public InventoryMove() {
         super("InventoryMove", "Checks if the player is moving with the inventory open.", CheckCategory.MOVEMENT, 5);
-    }
-
-    public void onEnable() {
-        Bukkit.getPluginManager().registerEvents(this, AntiCheat.Plugin);
     }
 
     public static HashMap<Player, Boolean> PlayerList = new HashMap();
@@ -66,7 +62,7 @@ public class InventoryMove extends Check implements Listener {
         }
     }
 
-    public void onInventoryMove(InventoryClickEvent event)
+    public void onInventoryClick(InventoryClickEvent event)
     {
         if(!enabled)
             return;

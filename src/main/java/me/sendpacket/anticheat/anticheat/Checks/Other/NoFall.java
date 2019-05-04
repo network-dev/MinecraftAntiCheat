@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-public class NoFall extends Check implements Listener {
+public class NoFall extends Check {
     public NoFall() {
         super("NoFall", "Checks if the player is sending onground packets while being in the air.", CheckCategory.MOVEMENT, 20);
     }

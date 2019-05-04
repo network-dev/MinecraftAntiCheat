@@ -28,7 +28,7 @@ class StepPlayer
 }
 
 
-public class Step extends Check implements Listener {
+public class Step extends Check {
     public Step() {
         super("Step", "Checks if the player has not jumped to get on a higher block.", CheckCategory.MOVEMENT, 10);
     }

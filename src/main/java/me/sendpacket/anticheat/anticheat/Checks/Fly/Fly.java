@@ -9,7 +9,7 @@ import me.sendpacket.anticheat.anticheat.Checks.SubCheck;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
-public class Fly extends Check implements Listener {
+public class Fly extends Check {
     public Fly() {
         super("Fly", "Checks if the player is flying while not having permission.", CheckCategory.MOVEMENT, 10);
     }

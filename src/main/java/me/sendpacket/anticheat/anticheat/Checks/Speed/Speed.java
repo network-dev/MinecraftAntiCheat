@@ -5,7 +5,7 @@ import me.sendpacket.anticheat.anticheat.Checks.CheckCategory;
 import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
 import org.bukkit.event.Listener;
 
-public class Speed extends Check implements Listener {
+public class Speed extends Check {
     public Speed() {
         super("Speed", "Checks if the player movement is faster than normal.", CheckCategory.MOVEMENT, 10);
     }

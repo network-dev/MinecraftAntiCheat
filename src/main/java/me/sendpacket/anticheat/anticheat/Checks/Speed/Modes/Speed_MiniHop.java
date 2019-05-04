@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 
-public class Speed_MiniHop extends SubCheck implements Listener {
+public class Speed_MiniHop extends SubCheck {
     public Speed_MiniHop() {
         super("Speed_MiniHop", CheckManager.Speed_Check);
     }

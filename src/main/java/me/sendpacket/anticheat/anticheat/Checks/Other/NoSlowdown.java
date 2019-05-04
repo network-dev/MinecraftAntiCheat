@@ -32,7 +32,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 
-public class NoSlowdown extends Check implements Listener {
+public class NoSlowdown extends Check {
     public NoSlowdown() {
         super("NoSlowdown", "Checks if the player is not slowing down while using items.", CheckCategory.MOVEMENT, 20);
     }

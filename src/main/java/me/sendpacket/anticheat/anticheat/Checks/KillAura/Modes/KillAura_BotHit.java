@@ -24,7 +24,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 import java.util.Random;
 
-public class KillAura_BotHit  extends SubCheck implements Listener {
+public class KillAura_BotHit  extends SubCheck {
     public KillAura_BotHit() {
         super("KillAura BotHit", CheckManager.KillAura_Check);
     }

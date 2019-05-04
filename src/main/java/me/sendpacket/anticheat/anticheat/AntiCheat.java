@@ -33,11 +33,11 @@ public final class AntiCheat extends JavaPlugin implements Listener {
        {
            this.getDataFolder().mkdirs();
        }
-       Bukkit.getServer().getPluginManager().registerEvents(new me.sendpacket.anticheat.anticheat.Listener(), this);
+       Bukkit.getServer().getPluginManager().registerEvents(new PluginListener(), this);
        Bukkit.getPluginManager().registerEvents(new MenuEvents(), this); // Used to handle interactions with the menu
        Bukkit.getPluginManager().registerEvents(new AlarmUtil(), this);
        Bukkit.getPluginManager().registerEvents(new AnalyzerManager(), this);
-       me.sendpacket.anticheat.anticheat.Listener.Setup();
+       PluginListener.Setup();
        AlarmUtil.UpdateAvoidTimer();
        CheckManager.Load(this);
     }

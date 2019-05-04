@@ -24,7 +24,7 @@ class PlayerSpeed
     ArrayList<Double> SpeeList = new ArrayList<>();
 }
 
-public class KillAura_KeepSprint  extends SubCheck implements Listener {
+public class KillAura_KeepSprint  extends SubCheck {
     public KillAura_KeepSprint() {
         super("KillAura KeepSprint", CheckManager.KillAura_Check);
     }

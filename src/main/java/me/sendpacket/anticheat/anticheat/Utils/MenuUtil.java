@@ -27,58 +27,19 @@ public class MenuUtil {
     private static ItemStack RED_DYE = new ItemStack(Material.INK_SACK, 1, DyeColor.RED.getDyeData());
     private static ItemStack ORANGE_DYE = new ItemStack(Material.INK_SACK, 1, DyeColor.ORANGE.getDyeData());
 
-    public static ItemStack getItem(ItemStack is, String display_name, String description)
-    {
-        ItemMeta meta = is.getItemMeta();
-        meta.setDisplayName(display_name);
-        ArrayList<String> lore = new ArrayList<String>();
-        lore.add(description);
-        meta.setLore(lore);
-        is.setItemMeta(meta);
 
-        return is;
-    }
-    public static ItemStack getItem(ItemStack is, String display_name)
-    {
-        ItemMeta meta = is.getItemMeta();
-        meta.setDisplayName(display_name);
-        is.setItemMeta(meta);
-
-        return is;
-    }
-    public static ItemStack getItem(Material mat, String display_name, String description)
-    {
-        ItemStack is = new ItemStack(mat);
-        ItemMeta meta = is.getItemMeta();
-        meta.setDisplayName(display_name);
-        ArrayList<String> lore = new ArrayList<String>();
-        lore.add(description);
-        meta.setLore(lore);
-        is.setItemMeta(meta);
-
-        return is;
-    }
-    public static ItemStack getItem(Material mat, String display_name)
-    {
-        ItemStack is = new ItemStack(mat);
-        ItemMeta meta = is.getItemMeta();
-        meta.setDisplayName(display_name);
-        is.setItemMeta(meta);
-
-        return is;
-    }
     public static Inventory getMainInv()
     {
         Inventory inv = Bukkit.createInventory(null, 9, Menu_Title);
-        inv.setItem(1, getItem(Material.WATCH, "§aChecks", "§7Here you can enable or disable all the different checks/detection methods."));
-        inv.setItem(4, getItem(Material.PAPER, "§6Analyze", "§cOnly for developers or reporting bugs.\n§7Creates a text file to log and analyze the movement of a player, used to create new detection methods for movement related cheats."));
-        inv.setItem(7, getItem(Material.COMPASS, "§cSettings", "§7Here you can change some of the behaviour of the anticheat."));
+        inv.setItem(1, ItemUtil.getItem(Material.WATCH, "§aChecks", "§7Here you can enable or disable all the different checks/detection methods."));
+        inv.setItem(4, ItemUtil.getItem(Material.PAPER, "§6Analyze", "§cFor developers or bugs only.\n§7Creates a text file to log and analyze the movement of a player,\n§7used to create new detection methods for movement related cheats."));
+        inv.setItem(7, ItemUtil.getItem(Material.COMPASS, "§cSettings", "§7Here you can change some of the behaviour of the anticheat."));
         return inv;
     }
     public static Inventory getSettingsInv(Player p)
     {
         Inventory inv = Bukkit.createInventory(null, 9, Menu_Title);
-        inv.setItem(0, getItem(RED_DYE, "§cBack"));
+        inv.setItem(0, ItemUtil.getItem(RED_DYE, "§cBack"));
 
         boolean debug_state = false;
         if(AlarmUtil.PlayerShouldDebug.get(p) != null)
@@ -86,10 +47,10 @@ public class MenuUtil {
             debug_state = AlarmUtil.PlayerShouldDebug.get(p);
         }
 
-        inv.setItem(2, getItem(Material.SIGN, "§7Debug", "§7["+ (debug_state ? "§aON" : "§cOFF" ) +"§7]\n§cOnly for developers or reporting bugs.§7Sends messages to all the players with useful information about movement."));
-        inv.setItem(3, getItem(Material.ENDER_PEARL, "§7Blocking", "§7["+ (CheckManager.Enable_SetBacks ? "§aON" : "§cOFF" ) +"§7]\n§7If enabled, the anticheat will try to block the cheats."));
-        inv.setItem(4, getItem(Material.WOOD_DOOR, "§7Kicks", "§7["+ (CheckManager.Enable_Kicks ? "§aON" : "§cOFF" ) +"§7]\n§7Kicks the player when a certain violation level is reached."));
-        inv.setItem(5, getItem(Material.BOOK, "§7Messages", "§7["+ (CheckManager.Enable_Messages ? "§aON" : "§cOFF" ) +"§7]\n§7Sends messages to the players that have the permission to listen to them, when the anticheat detects a cheat being used."));
+        inv.setItem(2, ItemUtil.getItem(Material.SIGN, "§7Debug", "§7[ Status: "+ (debug_state ? "§aON" : "§cOFF" ) +" §7]\n§cFor developers or bugs only.\n§7Messages to players with information about movement."));
+        inv.setItem(3, ItemUtil.getItem(Material.ENDER_PEARL, "§7Blocking", "§7[ Status: "+ (CheckManager.Enable_SetBacks ? "§aON" : "§cOFF" ) +" §7]\n§7If enabled, the anticheat will try to block the cheats."));
+        inv.setItem(4, ItemUtil.getItem(Material.WOOD_DOOR, "§7Kicks", "§7[ Status: "+ (CheckManager.Enable_Kicks ? "§aON" : "§cOFF" ) +" §7]\n§7Kicks the player when a certain violation level is reached."));
+        inv.setItem(5, ItemUtil.getItem(Material.BOOK, "§7Messages", "§7[ Status: "+ (CheckManager.Enable_Messages ? "§aON" : "§cOFF" ) +" §7]\n§7Sends messages when the anticheat detects a cheat being used."));
         return inv;
     }
     public static Inventory getSubChecksInv(Player p)
@@ -97,20 +58,20 @@ public class MenuUtil {
         Inventory inv = Bukkit.createInventory(null, 45, Menu_Title);
         if(SelectedCheck.get(p) != null) {
             for (SubCheck sc : SelectedCheck.get(p).SubCheckList) {
-                inv.addItem(getItem(sc.enabled ? LIME_DYE : GRAY_DYE, "§6" + sc.name + " §7[" + (sc.enabled ? "§aON" : "§cOFF") + "§7]", ""));
+                inv.addItem(ItemUtil.getItem(sc.enabled ? LIME_DYE : GRAY_DYE, "§7" + sc.name, "§7[ Status: " + (sc.enabled ? "§aON" : "§cOFF") + " §7]"));
             }
         }
-        inv.setItem(36, getItem(RED_DYE, "§cBack"));
+        inv.setItem(36, ItemUtil.getItem(RED_DYE, "§cBack"));
         return inv;
     }
     public static Inventory getChecksInv()
     {
         Inventory inv = Bukkit.createInventory(null, 9, Menu_Title);
-        inv.setItem(0, getItem(RED_DYE, "§cBack"));
-        inv.setItem(8, getItem(RED_DYE, "§cBack"));
-        inv.setItem(2, getItem(Material.IRON_SWORD, "§7Combat", "§7All of the combat related checks."));
-        inv.setItem(4, getItem(Material.FEATHER, "§7Movement", "§7All of the movement related checks."));
-        inv.setItem(6, getItem(Material.EXP_BOTTLE, "§7Other", "§7All the checks that don't have a specific category."));
+        inv.setItem(0, ItemUtil.getItem(RED_DYE, "§cBack"));
+        inv.setItem(8, ItemUtil.getItem(RED_DYE, "§cBack"));
+        inv.setItem(2, ItemUtil.getItem(Material.IRON_SWORD, "§7Combat", "§7All of the combat related checks."));
+        inv.setItem(4, ItemUtil.getItem(Material.FEATHER, "§7Movement", "§7All of the movement related checks."));
+        inv.setItem(6, ItemUtil.getItem(Material.EXP_BOTTLE, "§7Other", "§7All the checks that don't have a specific category."));
         return inv;
     }
     public static Inventory getCategoryChecksInv(CheckCategory category)
@@ -125,16 +86,16 @@ public class MenuUtil {
                 }else{
                     if(was_last_bigcheck)
                     {
-                        inv.addItem(getItem(Material.STICK,""));
+                        inv.addItem(ItemUtil.getItem(Material.STICK,"§7 "));
                         was_last_bigcheck = false;
                     }
                 }
                 ItemStack mat_i = (c.SubCheckList.size() > 0 ? ORANGE_DYE : (c.enabled ? LIME_DYE : GRAY_DYE));
-                String name_i = ("§6" + c.name) + (c.SubCheckList.size() > 0 ? "" : (" §7[" + (c.enabled ? "§aON" : "§cOFF") + "§7]"));
-                inv.addItem(getItem(mat_i,name_i, c.description));
+                String name_i = ("§7" + c.name);
+                inv.addItem(ItemUtil.getItem(mat_i,name_i, (c.SubCheckList.size() > 0 ? "" : (" §7[ Status: " + (c.enabled ? "§aON" : "§cOFF") + " §7]") + "\n§7"+c.description)));
             }
         }
-        inv.setItem(36, getItem(RED_DYE, "§cBack"));
+        inv.setItem(36, ItemUtil.getItem(RED_DYE, "§cBack"));
         return inv;
     }
     public static void UpdateInventory(Player p)
@@ -226,7 +187,7 @@ public class MenuUtil {
                     break;
                 case 2:
                     for (Check c : CheckManager.CheckList) {
-                        name_i = ("§6" + c.name) + (c.SubCheckList.size() > 0 ? "" : (" §7[" + (c.enabled ? "§aON" : "§cOFF") + "§7]"));
+                        name_i = ("§7" + c.name);
                         if (name_i.equalsIgnoreCase(inv.getItem(slot).getItemMeta().getDisplayName())) {
                             if (c.SubCheckList.size() > 0) {
                                 SelectedCheck.put(player, c);
@@ -250,7 +211,7 @@ public class MenuUtil {
                     break;
                 case 3:
                     for (Check c : CheckManager.CheckList) {
-                        name_i = ("§6" + c.name) + (c.SubCheckList.size() > 0 ? "" : (" §7[" + (c.enabled ? "§aON" : "§cOFF") + "§7]"));
+                        name_i = ("§7" + c.name);
                         if (name_i.equalsIgnoreCase(inv.getItem(slot).getItemMeta().getDisplayName())) {
                             if (c.SubCheckList.size() > 0) {
                                 SelectedCheck.put(player, c);
@@ -306,7 +267,7 @@ public class MenuUtil {
                             AlarmUtil.PlayerShouldDebug.put(player, (AlarmUtil.PlayerShouldDebug.get(player) != null ? !AlarmUtil.PlayerShouldDebug.get(player) : true));
                             UpdateInventory(player);
                             break;
-                        case "§7SetBacks":
+                        case "§7Blocking":
                             CheckManager.Enable_SetBacks = !CheckManager.Enable_SetBacks;
                             UpdateInventory(player);
                             break;

@@ -43,9 +43,9 @@ public class Check {
     {
         ViolationLevel.put(p, 0);
     }
-    public void AddViolationLevel(Player p)
+    public void AddViolationLevel(Player p, int addition)
     {
-        ViolationLevel.put(p, ViolationLevel.get(p) != null ? ViolationLevel.get(p) + 1 : 1);
+        ViolationLevel.put(p, ViolationLevel.get(p) != null ? ViolationLevel.get(p) + addition : addition);
     }
 
     public void onEnable(){};

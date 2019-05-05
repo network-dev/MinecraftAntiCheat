@@ -15,10 +15,6 @@ import java.util.HashMap;
 
 public class AlarmUtil implements Listener {
 
-    //public static void Info(Player player, String msg)
-    //{
-     //   player.sendMessage("§7[§cAC§7] §7" + msg);
-    //}
     public static HashMap<Player, Integer> AvoidFlaggingPlayer = new HashMap<>();
     public static HashMap<Player, Integer> PlayerFlagTimer = new HashMap<>();
     public static HashMap<Player, Boolean> PlayerShouldDebug = new HashMap<>();
@@ -45,90 +41,77 @@ public class AlarmUtil implements Listener {
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(AntiCheat.Plugin, new Runnable() {
             public void run() {
                 for(Player p : Bukkit.getOnlinePlayers()) {
-                    if(PlayerFlagTimer.get(p) != null)
+                    if(getFlagTimer(p) > 0)
                     {
-                        if(PlayerFlagTimer.get(p) > 0)
-                        {
-                            PlayerFlagTimer.put(p,PlayerFlagTimer.get(p) - 1);
-                        }
+                        PlayerFlagTimer.put(p,PlayerFlagTimer.get(p) - 1);
                     }
-                    if(AvoidFlaggingPlayer.get(p) != null)
+                    if(getAvoidTimer(p) > 0)
                     {
-                        if(AvoidFlaggingPlayer.get(p) > 0)
-                        {
-                            AvoidFlaggingPlayer.put(p,AvoidFlaggingPlayer.get(p) - 1);
-                        }
+                        AvoidFlaggingPlayer.put(p,AvoidFlaggingPlayer.get(p) - 1);
                     }
                 }
             }
         }, 0, 1L);
     }
 
+    public static int getAvoidTimer(Player player)
+    {
+        if (AvoidFlaggingPlayer.get(player) != null)
+        {
+            return AvoidFlaggingPlayer.get(player);
+        }
+        return 0;
+    }
 
+    public static int getFlagTimer(Player player)
+    {
+        if (PlayerFlagTimer.get(player) != null)
+        {
+            return PlayerFlagTimer.get(player);
+        }
+        return 0;
+    }
 
-    public static void AddViolation(Player player, Check check, String details) {
-        if (AvoidFlaggingPlayer.get(player) != null) {
-            if (AvoidFlaggingPlayer.get(player) > 0) {
-                return;
+    public static void AddViolation(Player player, Check check, int addition_level, String details) {
+        if (getAvoidTimer(player) > 0)
+            return;
+
+        check.AddViolationLevel(player, addition_level);
+
+        if(CheckManager.Enable_Messages)
+        {
+            String message = ("§7[§cAC§7] §7" + check.name + " [" + check.ViolationLevel.get(player) + "]");
+            if(details.length() > 0)
+            {
+                message += (details.length() > 0 ? " -> " + details : "");
             }
+            player.sendMessage(message);
         }
 
-        check.AddViolationLevel(player);
-        if(CheckManager.Enable_Messages) {
-            player.sendMessage("§7[§cAC§7] §7" + check.name + " [" + check.ViolationLevel.get(player) + "]" + (details.length() > 0 ? " -> " + details : ""));
-        }
-        if(CheckManager.Enable_Kicks) {
+        if(CheckManager.Enable_Kicks)
+        {
             if(check.getViolationLevel(player) >= check.kick_max)
             {
                 check.ResetViolationLevel(player);
                 player.kickPlayer("§7[§cAC§7] \n" + "§7You were kicked for using cheats. [" + check.name+"]");
             }
         }
-        if (!CheckManager.Enable_SetBacks) {
-            return;
-        }
 
-        if (PlayerFlagTimer.get(player) != null) {
-            if (PlayerFlagTimer.get(player) > 0) {
-                return;
-            }
-        }
+        if (getFlagTimer(player) > 0 || !CheckManager.Enable_SetBacks)
+            return;
 
         PlayerFlagTimer.put(player, 5);
     }
-
+    public static void AddViolation(Player player, Check check, int addition_level)
+    {
+        AddViolation(player, check, addition_level, "");
+    }
     public static void AddViolation(Player player, Check check)
     {
-        if (AvoidFlaggingPlayer.get(player) != null) {
-            if (AvoidFlaggingPlayer.get(player) > 0) {
-                return;
-            }
-        }
-
-        check.AddViolationLevel(player);
-        if(CheckManager.Enable_Messages) {
-            player.sendMessage("§7[§cAC§7] §7" + check.name + " [" + check.ViolationLevel.get(player) + "]");
-        }
-        if(CheckManager.Enable_Kicks) {
-            if(check.getViolationLevel(player) >= check.kick_max)
-            {
-                check.ResetViolationLevel(player);
-                player.kickPlayer("§7[§cAC§7] \n" + "§7You were kicked for using cheats. [" + check.name+"]");
-            }
-        }
-
-        if (!CheckManager.Enable_SetBacks) {
-            return;
-        }
-
-        if(PlayerFlagTimer.get(player) != null)
-        {
-            if(PlayerFlagTimer.get(player) > 0)
-            {
-                return;
-            }
-        }
-
-        PlayerFlagTimer.put(player, 5);
+        AddViolation(player, check, 1, "");
+    }
+    public static void AddViolation(Player player, Check check,  String details)
+    {
+        AddViolation(player, check, 1, details);
     }
 }

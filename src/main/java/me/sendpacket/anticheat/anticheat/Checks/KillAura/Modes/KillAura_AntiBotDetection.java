@@ -83,7 +83,7 @@ public class KillAura_AntiBotDetection extends SubCheck {
                                 if(BotTimer.get(player) > 10) {
                                     if (BotHit.get(player) != null) {
                                         if (BotHit.get(player) == false) {
-                                            AlarmUtil.AddViolation(player, CheckManager.KillAura_Check, "KillAura AntiBotDetection.");
+                                            AlarmUtil.AddViolation(player, CheckManager.KillAura_Check, CheckManager.KillAura_Check.kick_max, "KillAura AntiBotDetection.");
                                         }
                                     }
                                     BotTimer.put(player, 0);
@@ -101,7 +101,7 @@ public class KillAura_AntiBotDetection extends SubCheck {
     }
 
     public void onPacketReceiving(PacketEvent event) {
-        if(event.getPacket().getType().equals(PacketType.Play.Client.USE_ITEM)) {
+        if(event.getPacket().getType().equals(PacketType.Play.Client.USE_ENTITY)) {
             Player player = event.getPlayer();
 
             int targetID = event.getPacket().getIntegers().read(0);

@@ -2,8 +2,7 @@ package me.sendpacket.anticheat.anticheat.Checks.Speed;
 
 import me.sendpacket.anticheat.anticheat.Checks.Check;
 import me.sendpacket.anticheat.anticheat.Checks.CheckCategory;
-import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
-import org.bukkit.event.Listener;
+import me.sendpacket.anticheat.anticheat.Managers.CheckManager;
 
 public class Speed extends Check {
     public Speed() {

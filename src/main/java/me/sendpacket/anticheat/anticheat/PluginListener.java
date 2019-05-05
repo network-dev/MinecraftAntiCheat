@@ -5,7 +5,8 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
 import me.sendpacket.anticheat.anticheat.Checks.Check;
-import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
+import me.sendpacket.anticheat.anticheat.Managers.BlockManager;
+import me.sendpacket.anticheat.anticheat.Managers.CheckManager;
 import me.sendpacket.anticheat.anticheat.Checks.SubCheck;
 import me.sendpacket.anticheat.anticheat.Menu.MenuEvents;
 import org.bukkit.Bukkit;
@@ -44,6 +45,7 @@ public class PluginListener implements Listener {
                 }
             }
         }
+        event.setCancelled(BlockManager.onMove(event));
     }
     @EventHandler
     public void onInteract(PlayerInteractEvent event){
@@ -67,6 +69,7 @@ public class PluginListener implements Listener {
                 }
             }
         }
+        event.setCancelled(BlockManager.onEntityDamage(event));
     }
     @EventHandler
     public void onEntityDamageEvent(EntityDamageEvent event){
@@ -113,7 +116,7 @@ public class PluginListener implements Listener {
         }
     }
     @EventHandler
-    public void onInventoryClick(InventoryCloseEvent event){
+    public void onInventoryClose(InventoryCloseEvent event){
         MenuEvents.onMenuClose(event);
     }
     @EventHandler
@@ -142,6 +145,7 @@ public class PluginListener implements Listener {
                             }
                         }
                     }
+                    BlockManager.onTickUpdate();
                 }catch (Exception e){};
             }
         }, 0, 1L);

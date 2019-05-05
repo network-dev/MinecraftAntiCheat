@@ -1,34 +1,19 @@
 package me.sendpacket.anticheat.anticheat.Checks.Other;
 
 import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.ListenerPriority;
-import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import me.sendpacket.anticheat.anticheat.AntiCheat;
 import me.sendpacket.anticheat.anticheat.Checks.Check;
 import me.sendpacket.anticheat.anticheat.Checks.CheckCategory;
-import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
+import me.sendpacket.anticheat.anticheat.Managers.CheckManager;
 import me.sendpacket.anticheat.anticheat.Utils.AlarmUtil;
 import me.sendpacket.anticheat.anticheat.Utils.MathUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 

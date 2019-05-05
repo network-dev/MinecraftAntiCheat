@@ -1,5 +1,6 @@
-package me.sendpacket.anticheat.anticheat.Analyzer;
+package me.sendpacket.anticheat.anticheat.Managers;
 
+import me.sendpacket.anticheat.anticheat.Analyzer.AnalyzeLogger;
 import me.sendpacket.anticheat.anticheat.AntiCheat;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

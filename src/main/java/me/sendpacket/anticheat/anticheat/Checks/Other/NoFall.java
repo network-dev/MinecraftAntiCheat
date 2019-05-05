@@ -2,12 +2,11 @@ package me.sendpacket.anticheat.anticheat.Checks.Other;
 
 import me.sendpacket.anticheat.anticheat.Checks.Check;
 import me.sendpacket.anticheat.anticheat.Checks.CheckCategory;
-import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
+import me.sendpacket.anticheat.anticheat.Managers.CheckManager;
 import me.sendpacket.anticheat.anticheat.Utils.AlarmUtil;
 import me.sendpacket.anticheat.anticheat.Utils.PlayerUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 public class NoFall extends Check {

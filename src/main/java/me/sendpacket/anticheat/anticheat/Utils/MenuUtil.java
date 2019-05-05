@@ -1,9 +1,9 @@
 package me.sendpacket.anticheat.anticheat.Utils;
 
-import me.sendpacket.anticheat.anticheat.Analyzer.AnalyzerManager;
+import me.sendpacket.anticheat.anticheat.Managers.AnalyzerManager;
 import me.sendpacket.anticheat.anticheat.Checks.Check;
 import me.sendpacket.anticheat.anticheat.Checks.CheckCategory;
-import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
+import me.sendpacket.anticheat.anticheat.Managers.CheckManager;
 import me.sendpacket.anticheat.anticheat.Checks.SubCheck;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
@@ -70,9 +70,9 @@ public class MenuUtil {
     public static Inventory getMainInv()
     {
         Inventory inv = Bukkit.createInventory(null, 9, Menu_Title);
-        inv.setItem(1, getItem(Material.WATCH, "§aChecks"));
-        inv.setItem(4, getItem(Material.PAPER, "§6Analyze"));
-        inv.setItem(7, getItem(Material.COMPASS, "§cSettings"));
+        inv.setItem(1, getItem(Material.WATCH, "§aChecks", "§7Here you can enable or disable all the different checks/detection methods."));
+        inv.setItem(4, getItem(Material.PAPER, "§6Analyze", "§cOnly for developers or reporting bugs.\n§7Creates a text file to log and analyze the movement of a player, used to create new detection methods for movement related cheats."));
+        inv.setItem(7, getItem(Material.COMPASS, "§cSettings", "§7Here you can change some of the behaviour of the anticheat."));
         return inv;
     }
     public static Inventory getSettingsInv(Player p)
@@ -86,10 +86,10 @@ public class MenuUtil {
             debug_state = AlarmUtil.PlayerShouldDebug.get(p);
         }
 
-        inv.setItem(2, getItem(Material.SIGN, "§7Debug", "§7["+ (debug_state ? "§aON" : "§cOFF" ) +"§7]"));
-        inv.setItem(3, getItem(Material.ENDER_PEARL, "§7SetBacks", "§7["+ (CheckManager.Enable_SetBacks ? "§aON" : "§cOFF" ) +"§7]"));
-        inv.setItem(4, getItem(Material.WOOD_DOOR, "§7Kicks", "§7["+ (CheckManager.Enable_Kicks ? "§aON" : "§cOFF" ) +"§7]"));
-        inv.setItem(5, getItem(Material.BOOK, "§7Messages", "§7["+ (CheckManager.Enable_Messages ? "§aON" : "§cOFF" ) +"§7]"));
+        inv.setItem(2, getItem(Material.SIGN, "§7Debug", "§7["+ (debug_state ? "§aON" : "§cOFF" ) +"§7]\n§cOnly for developers or reporting bugs.§7Sends messages to all the players with useful information about movement."));
+        inv.setItem(3, getItem(Material.ENDER_PEARL, "§7Blocking", "§7["+ (CheckManager.Enable_SetBacks ? "§aON" : "§cOFF" ) +"§7]\n§7If enabled, the anticheat will try to block the cheats."));
+        inv.setItem(4, getItem(Material.WOOD_DOOR, "§7Kicks", "§7["+ (CheckManager.Enable_Kicks ? "§aON" : "§cOFF" ) +"§7]\n§7Kicks the player when a certain violation level is reached."));
+        inv.setItem(5, getItem(Material.BOOK, "§7Messages", "§7["+ (CheckManager.Enable_Messages ? "§aON" : "§cOFF" ) +"§7]\n§7Sends messages to the players that have the permission to listen to them, when the anticheat detects a cheat being used."));
         return inv;
     }
     public static Inventory getSubChecksInv(Player p)
@@ -108,9 +108,9 @@ public class MenuUtil {
         Inventory inv = Bukkit.createInventory(null, 9, Menu_Title);
         inv.setItem(0, getItem(RED_DYE, "§cBack"));
         inv.setItem(8, getItem(RED_DYE, "§cBack"));
-        inv.setItem(2, getItem(Material.IRON_SWORD, "§7Combat"));
-        inv.setItem(4, getItem(Material.FEATHER, "§7Movement"));
-        inv.setItem(6, getItem(Material.EXP_BOTTLE, "§7Other"));
+        inv.setItem(2, getItem(Material.IRON_SWORD, "§7Combat", "§7All of the combat related checks."));
+        inv.setItem(4, getItem(Material.FEATHER, "§7Movement", "§7All of the movement related checks."));
+        inv.setItem(6, getItem(Material.EXP_BOTTLE, "§7Other", "§7All the checks that don't have a specific category."));
         return inv;
     }
     public static Inventory getCategoryChecksInv(CheckCategory category)

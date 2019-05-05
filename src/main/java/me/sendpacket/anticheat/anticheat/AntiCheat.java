@@ -1,26 +1,16 @@
 package me.sendpacket.anticheat.anticheat;
 
-import me.sendpacket.anticheat.anticheat.Analyzer.AnalyzerManager;
-import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
-import me.sendpacket.anticheat.anticheat.Checks.Other.Timer;
+import me.sendpacket.anticheat.anticheat.Managers.AnalyzerManager;
+import me.sendpacket.anticheat.anticheat.Managers.CheckManager;
 import me.sendpacket.anticheat.anticheat.Menu.MenuEvents;
 import me.sendpacket.anticheat.anticheat.Utils.AlarmUtil;
 import me.sendpacket.anticheat.anticheat.Utils.MenuUtil;
-import me.sendpacket.anticheat.anticheat.Utils.PlayerUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
 
 public final class AntiCheat extends JavaPlugin implements Listener {
 

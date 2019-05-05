@@ -1,20 +1,10 @@
 package me.sendpacket.anticheat.anticheat.Checks.Fly.Modes;
 
-import me.sendpacket.anticheat.anticheat.AntiCheat;
-import me.sendpacket.anticheat.anticheat.Checks.Check;
-import me.sendpacket.anticheat.anticheat.Checks.CheckCategory;
-import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
+import me.sendpacket.anticheat.anticheat.Managers.CheckManager;
 import me.sendpacket.anticheat.anticheat.Checks.SubCheck;
 import me.sendpacket.anticheat.anticheat.Utils.AlarmUtil;
 import me.sendpacket.anticheat.anticheat.Utils.PlayerUtil;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;

@@ -1,13 +1,8 @@
 package me.sendpacket.anticheat.anticheat.Checks.KillAura;
 
-import me.sendpacket.anticheat.anticheat.AntiCheat;
 import me.sendpacket.anticheat.anticheat.Checks.Check;
 import me.sendpacket.anticheat.anticheat.Checks.CheckCategory;
-import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
-import me.sendpacket.anticheat.anticheat.Checks.KillAura.Modes.*;
-import me.sendpacket.anticheat.anticheat.Checks.SubCheck;
-import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
+import me.sendpacket.anticheat.anticheat.Managers.CheckManager;
 
 
 public class KillAura extends Check {

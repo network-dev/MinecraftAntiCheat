@@ -2,13 +2,13 @@ package me.sendpacket.anticheat.anticheat.Utils;
 
 import me.sendpacket.anticheat.anticheat.AntiCheat;
 import me.sendpacket.anticheat.anticheat.Checks.Check;
-import me.sendpacket.anticheat.anticheat.Checks.CheckManager;
+import me.sendpacket.anticheat.anticheat.Managers.BlockManager;
+import me.sendpacket.anticheat.anticheat.Managers.CheckManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
 import java.util.HashMap;
@@ -73,7 +73,7 @@ public class AlarmUtil implements Listener {
     }
 
     public static void AddViolation(Player player, Check check, int addition_level, String details) {
-        if (getAvoidTimer(player) > 0)
+        if (getAvoidTimer(player) > 0 || BlockManager.isTimerOverZero(player))
             return;
 
         check.AddViolationLevel(player, addition_level);
@@ -88,11 +88,28 @@ public class AlarmUtil implements Listener {
             player.sendMessage(message);
         }
 
+        if(CheckManager.Enable_SetBacks)
+        {
+            switch(check.category)
+            {
+                case COMBAT:
+                    BlockManager.PlayerCombatBlockLog.put(player, 30);
+                    break;
+                case MOVEMENT:
+                    BlockManager.PlayerMovementBlockLog.put(player, 30);
+                    break;
+                default:
+                    BlockManager.PlayerCombatBlockLog.put(player, 30);
+                    BlockManager.PlayerMovementBlockLog.put(player, 30);
+                    break;
+            }
+        }
+
         if(CheckManager.Enable_Kicks)
         {
             if(check.getViolationLevel(player) >= check.kick_max)
             {
-                check.ResetViolationLevel(player);
+                CheckManager.ResetPlayer(player);
                 player.kickPlayer("§7[§cAC§7] \n" + "§7You were kicked for using cheats. [" + check.name+"]");
             }
         }

@@ -1,5 +1,6 @@
-package me.sendpacket.anticheat.anticheat.Checks;
+package me.sendpacket.anticheat.anticheat.Managers;
 
+import me.sendpacket.anticheat.anticheat.Checks.Check;
 import me.sendpacket.anticheat.anticheat.Checks.Fly.Fly;
 import me.sendpacket.anticheat.anticheat.Checks.Fly.Modes.*;
 import me.sendpacket.anticheat.anticheat.Checks.KillAura.KillAura;
@@ -8,7 +9,9 @@ import me.sendpacket.anticheat.anticheat.Checks.Other.*;
 import me.sendpacket.anticheat.anticheat.Checks.Speed.Modes.Speed_FastSpeed;
 import me.sendpacket.anticheat.anticheat.Checks.Speed.Modes.Speed_MiniHop;
 import me.sendpacket.anticheat.anticheat.Checks.Speed.Speed;
+import me.sendpacket.anticheat.anticheat.Checks.SubCheck;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -106,5 +109,13 @@ public class CheckManager{
         return null;
     }
 
-
+    public static void ResetPlayer(Player player)
+    {
+        for(Check c :CheckList)
+        {
+            c.ResetViolationLevel(player);
+        }
+        BlockManager.PlayerCombatBlockLog.put(player, 0);
+        BlockManager.PlayerMovementBlockLog.put(player, 0);
+    }
 }

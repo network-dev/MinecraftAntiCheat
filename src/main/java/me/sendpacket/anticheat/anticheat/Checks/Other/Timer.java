@@ -30,15 +30,15 @@ public class Timer extends Check {
 
                 if (MovingPlayerList.get(p) != null) {
                     if (MovingPlayerList.get(p) == false) {
-                        if (FlyingPackets > 21) {
+                        if (FlyingPackets > 23) {
                             AlarmUtil.AddViolation(p, CheckManager.getCheck("Packets"), "Flying packet limit exceeded." + "Exceeded packets: " + (FlyingPackets - 21));
                         }
-                        if(MovingPackets > 2) {
+                        if(MovingPackets > 3) {
                             AlarmUtil.AddViolation(p, CheckManager.getCheck("Packets"), "Position packet limit exceeded." + "Exceeded packets: " + (MovingPackets - 2));
                         }
                     }
                     if (MovingPlayerList.get(p) == true) {
-                        if (MovingPackets > 22) {
+                        if (MovingPackets > 24) {
                             AlarmUtil.AddViolation(p, CheckManager.getCheck("Packets"), "Position packet limit exceeded." + "Exceeded packets: " + (MovingPackets - 22));
                         }
                     }

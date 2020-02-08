@@ -4,6 +4,7 @@ import me.sendpacket.anticheat.anticheat.Managers.CheckManager;
 import me.sendpacket.anticheat.anticheat.Checks.SubCheck;
 import me.sendpacket.anticheat.anticheat.Utils.AlarmUtil;
 import me.sendpacket.anticheat.anticheat.Utils.PlayerUtil;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -31,7 +32,7 @@ public class KillAura_Criticals extends SubCheck {
                 EqualVelocity.put(player, EqualVelocity.get(player) != null ? EqualVelocity.get(player) + 1 : 1);
                 if(EqualVelocity.get(player) > 2) {
                     if (LastYDiff.get(player) > 0 && ydiff < 0 && PlayerUtil.DistanceToGround(player) < 1) {
-                        if (ydiff == -(LastYDiff.get(player))) {
+                        if (ydiff == -(LastYDiff.get(player)) && !PlayerUtil.IsLiquidAround(player, 0, 1) && !PlayerUtil.IsAtEdgeOfBlock(player) && player.getLocation().getBlock().getType() != Material.COBWEB) {
                             AlarmUtil.AddViolation(player, CheckManager.KillAura_Check,"KillAura Criticals.");
                         }
                     }

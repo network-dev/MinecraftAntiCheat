@@ -57,6 +57,9 @@ public class KillAura_AntiBotDetection extends SubCheck {
 
             Hits.put(player, Hits.get(player) != null ? Hits.get(player) + 1 : 1);
 
+            if (player.getAllowFlight())
+                return;
+
             if(Hits.get(player) != null)
             {
                 if(Hits.get(player) > 1)
@@ -71,11 +74,11 @@ public class KillAura_AntiBotDetection extends SubCheck {
                                 BotHit.put(player, false);
                                 new_npc.setRecipientType(NPC.Recipient.LISTED_RECIPIENTS);
                                 new_npc.addRecipient(player);
+                                new_npc.teleport(PlayerUtil.getBlockBehindPlayer(player, -1), false);
+                                new_npc.spawn(false, false);
                                 NPC.Action new_act = new NPC.Action();
                                 new_act.setInvisible(true);
                                 new_npc.setAction(new_act);
-                                new_npc.teleport(PlayerUtil.getBlockBehindPlayer(player, -1), false);
-                                new_npc.spawn(false, false);
                                 BotList.put(player, new_npc);
                             }else{
                                 BotTimer.put(player, BotTimer.get(player) != null ? BotTimer.get(player) + 1 : 1);

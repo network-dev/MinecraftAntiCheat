@@ -13,7 +13,7 @@ public class MenuEvents implements Listener {
     public static void onMenuClose(InventoryCloseEvent event)
     {
         Player player = (Player) event.getPlayer();
-        if(event.getInventory().getTitle().equalsIgnoreCase(MenuUtil.Menu_Title))
+        if(event.getView().getTitle().equalsIgnoreCase(MenuUtil.Menu_Title))
         {
             MenuUtil.HasInventoryOpen.put(player, false);
         }
@@ -30,8 +30,8 @@ public class MenuEvents implements Listener {
     public static void onInventoryClick(InventoryClickEvent event) {
         try {
             Player player = (Player) event.getWhoClicked();
-            if (event.getClickedInventory().getTitle().length() > 0) {
-                if (event.getClickedInventory().getTitle().equalsIgnoreCase(MenuUtil.Menu_Title)) {
+            if (event.getView().getTitle().length() > 0) {
+                if (event.getView().getTitle().equalsIgnoreCase(MenuUtil.Menu_Title)) {
                     if (MenuUtil.HasInventoryOpen.get(player) != null) {
                         if (MenuUtil.HasInventoryOpen.get(player) == true) {
                             MenuUtil.InventoryClick(player, event.getClickedInventory(), event.getSlot());

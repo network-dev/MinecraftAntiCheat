@@ -31,7 +31,7 @@ public class KillAura_BotHit  extends SubCheck {
                 PlayerNPC.get(p).teleport(PlayerUtil.getLocationFront(p, -2), false);
             }
             NPCTimer.put(p, NPCTimer.get(p) != null ? NPCTimer.get(p) + 1 : 1);
-            if (NPCTimer.get(p) > 10) {
+            if (NPCTimer.get(p) > 20) {
                 if (NPCHits.get(p) != null) {
                     if (NPCHits.get(p) > 2) {
                         AlarmUtil.AddViolation(p, CheckManager.KillAura_Check, "KillAura BotHit " + NPCHits.get(p) + " hits.");
@@ -45,19 +45,21 @@ public class KillAura_BotHit  extends SubCheck {
 
     public void onEnityDamageByEntity(EntityDamageByEntityEvent event)
     {
-        if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
+        if (event.getDamager() instanceof Player) {
             Player player = (Player) event.getDamager();
-            Player entity = (Player) event.getEntity();
 
             if(PlayerNPC.get(player) == null)
             {
                 NPC new_npc = new NPC(player.getName(), PlayerUtil.getLocationFront(player, 1), AntiCheat.Plugin);
+
                 new_npc.setRecipientType(NPC.Recipient.LISTED_RECIPIENTS);
                 new_npc.addRecipient(player);
+                new_npc.spawn(false,false);
+
                 NPC.Action new_act = new NPC.Action();
                 new_act.setInvisible(true);
                 new_npc.setAction(new_act);
-                new_npc.spawn(false, false);
+
                 PlayerNPC.put(player, new_npc);
             }
         }
@@ -70,7 +72,6 @@ public class KillAura_BotHit  extends SubCheck {
             Player player = event.getPlayer();
 
             int targetID = event.getPacket().getIntegers().read(0);
-
             if(PlayerNPC.get(player) != null)
             {
                 if(targetID == PlayerNPC.get(player).getEntityId())

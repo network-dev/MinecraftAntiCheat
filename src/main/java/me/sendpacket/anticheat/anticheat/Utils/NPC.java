@@ -2,13 +2,13 @@ package me.sendpacket.anticheat.anticheat.Utils;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import net.minecraft.server.v1_12_R1.*;
+import net.minecraft.server.v1_15_R1.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_12_R1.util.CraftChatMessage;
+import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_15_R1.util.CraftChatMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -23,6 +23,7 @@ public class NPC {
 
     private int entityId;
     private Location location;
+    private Location last_location;
     private GameProfile gameprofile;
 
     private List<Player> recipients;
@@ -57,20 +58,20 @@ public class NPC {
         this.dataWatcher.register(object_entity_state = new DataWatcherObject<>(0, DataWatcherRegistry.a), (byte) 0);
         this.dataWatcher.register(new DataWatcherObject<>(1, DataWatcherRegistry.b), 300);
         this.dataWatcher.register(object_customName = new DataWatcherObject<>(2, DataWatcherRegistry.d), "");
-        this.dataWatcher.register(object_isCustomNameVisible = new DataWatcherObject<>(3, DataWatcherRegistry.h),false);
-        this.dataWatcher.register(object_isSilent = new DataWatcherObject<>(4, DataWatcherRegistry.h), false);
-        this.dataWatcher.register(object_hasGravity = new DataWatcherObject<>(5, DataWatcherRegistry.h), false);
+        this.dataWatcher.register(object_isCustomNameVisible = new DataWatcherObject<>(3, DataWatcherRegistry.i),false);
+        this.dataWatcher.register(object_isSilent = new DataWatcherObject<>(4, DataWatcherRegistry.i), false);
+        this.dataWatcher.register(object_hasGravity = new DataWatcherObject<>(5, DataWatcherRegistry.i), false);
         this.dataWatcher.register(new DataWatcherObject<>(6, DataWatcherRegistry.a), (byte) 0);
         this.dataWatcher.register(new DataWatcherObject<>(7, DataWatcherRegistry.c), 20.0F);
         this.dataWatcher.register(new DataWatcherObject<>(8, DataWatcherRegistry.b), 0);
-        this.dataWatcher.register(new DataWatcherObject<>(9, DataWatcherRegistry.h), false);
+        this.dataWatcher.register(new DataWatcherObject<>(9, DataWatcherRegistry.i), false);
         this.dataWatcher.register(new DataWatcherObject<>(10, DataWatcherRegistry.b), 0);
         this.dataWatcher.register(new DataWatcherObject<>(11, DataWatcherRegistry.c), 0.0F);
         this.dataWatcher.register(new DataWatcherObject<>(12, DataWatcherRegistry.b), 20);
         this.dataWatcher.register(new DataWatcherObject<>(13, DataWatcherRegistry.a), (byte) 127);
         this.dataWatcher.register(new DataWatcherObject<>(14, DataWatcherRegistry.a), (byte) 1);
-        this.dataWatcher.register(new DataWatcherObject<>(15, DataWatcherRegistry.n), new NBTTagCompound());
-        this.dataWatcher.register(new DataWatcherObject<>(16, DataWatcherRegistry.n), new NBTTagCompound());
+        this.dataWatcher.register(new DataWatcherObject<>(15, DataWatcherRegistry.p), new NBTTagCompound());
+        this.dataWatcher.register(new DataWatcherObject<>(16, DataWatcherRegistry.p), new NBTTagCompound());
     }
 
 
@@ -188,7 +189,7 @@ public class NPC {
         this.setField(packet, "e", location.getZ());
         this.setField(packet, "f", fix_head ? (byte) ((int) location.getYaw() * 256.0F / 360.0F) : 0);
         this.setField(packet, "g", fix_head ? (byte) ((int) location.getPitch() * 256.0F / 360.0F) : 0);
-        this.setField(packet, "h", this.dataWatcher);
+       // this.setField(packet, "h", this.dataWatcher);
         this.addToTabList();
         this.sendPacket(packet);
         this.isDestroyed = false;
@@ -342,32 +343,6 @@ public class NPC {
 
 
     /*
-     * make sure the npc is near a bed or on it.
-     */
-    public void setSleep(boolean state) {
-        if (state) {
-            Location bed = new Location(this.location.getWorld(), 0, 0, 0);
-
-            PacketPlayOutBed packet = new PacketPlayOutBed();
-            this.setField(packet, "a", this.entityId);
-            this.setField(packet, "b", new BlockPosition(bed.getX(), bed.getY(), bed.getZ()));
-
-            for (Player p : (this.recipient_type == Recipient.ALL ? Bukkit.getOnlinePlayers() : this.recipients)) {
-                ((CraftPlayer) p).sendBlockChange(bed, Material.BED_BLOCK, (byte) 0);
-                ((CraftPlayer) p).sendBlockChange(bed.add(0, 0, 1), Material.BED_BLOCK, (byte) 2);
-            }
-
-            this.sendPacket(packet);
-            this.teleport(location.clone().add(0, 0.3, 0), false);
-
-        } else {
-            this.setAnimation(NPCAnimation.LEAVE_BED);
-            this.teleport(location.clone().subtract(0, 0.3, 0), true);
-        }
-    }
-
-
-    /*
      * delete the npc from the server.
      */
     public void destroy() {
@@ -439,6 +414,7 @@ public class NPC {
         this.sendPacket(packet);
         this.rotateHead(location.getPitch(), location.getYaw());
         this.location = location;
+        this.sendPacket(packet);
     }
 
 
@@ -475,7 +451,7 @@ public class NPC {
     private void setMetaData(byte data) {
         this.setDataWatcherObject(this.object_entity_state, data);
         PacketPlayOutEntityMetadata packet = new PacketPlayOutEntityMetadata(this.entityId, this.dataWatcher, true);
-        sendPacket(packet);
+        this.sendPacket(packet);
     }
 
     private byte getFixRotation(float yawpitch) {

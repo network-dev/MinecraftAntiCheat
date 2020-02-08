@@ -2,9 +2,11 @@
   <library name="ProtocolLib">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../Server/plugins/ProtocolLib.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../Server/Spigot-1.12.2-642f6d2_57ab4cf-20180620-0518.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../SongMod/out/artifacts/Mod/server/spigot-1.15.2.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../SongMod/out/artifacts/Mod/server/spigot-1.15.2.jar!/" />
+    </SOURCES>
   </library>
 </component>

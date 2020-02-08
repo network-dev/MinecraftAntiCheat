@@ -30,17 +30,16 @@ public class BlockManager {
         return 0;
     }
 
-    public static int updateBlockTimers(Player player)
+    public static void updateBlockTimers(Player player)
     {
         if(PlayerMovementBlockLog.get(player) != null)
         {
-            return PlayerMovementBlockLog.put(player, PlayerMovementBlockLog.get(player) > 0 ? PlayerMovementBlockLog.get(player) - 1 : 0);
+            PlayerMovementBlockLog.put(player, PlayerMovementBlockLog.get(player) > 0 ? PlayerMovementBlockLog.get(player) - 1 : 0);
         }
         if(PlayerCombatBlockLog.get(player) != null)
         {
-            return PlayerCombatBlockLog.put(player, PlayerCombatBlockLog.get(player) > 0 ? PlayerCombatBlockLog.get(player) - 1 : 0);
+            PlayerCombatBlockLog.put(player, PlayerCombatBlockLog.get(player) > 0 ? PlayerCombatBlockLog.get(player) - 1 : 0);
         }
-        return 0;
     }
 
     public static boolean isTimerOverZero(Player player)

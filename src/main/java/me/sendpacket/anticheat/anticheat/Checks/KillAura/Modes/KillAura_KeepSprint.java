@@ -100,7 +100,6 @@ public class KillAura_KeepSprint  extends SubCheck {
             if(!player.isOnGround())
                 return;
 
-            ((LivingEntity) event.getEntity()).setHealth(20);
             if (HitTimer.get(player) == null) {
                 HitTimer.put(player, 10);
             }else{

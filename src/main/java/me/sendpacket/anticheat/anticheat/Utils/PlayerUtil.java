@@ -1,13 +1,15 @@
 package me.sendpacket.anticheat.anticheat.Utils;
 
-import net.minecraft.server.v1_12_R1.EntityPlayer;
-import net.minecraft.server.v1_12_R1.Item;
+import net.minecraft.server.v1_15_R1.EntityPlayer;
+import net.minecraft.server.v1_15_R1.Item;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.block.data.type.Slab;
+import org.bukkit.block.data.type.Stairs;
+import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -19,8 +21,6 @@ import java.util.Random;
 public class PlayerUtil {
 
     public static Random rand = new Random();
-
-   public static Material[] StairsBlocks = { Material.SANDSTONE_STAIRS, Material.COBBLESTONE_STAIRS, Material.BRICK_STAIRS, Material.SMOOTH_STAIRS, Material.NETHER_BRICK_STAIRS, Material.QUARTZ_STAIRS, Material.WOOD_STAIRS, Material.SPRUCE_WOOD_STAIRS, Material.BIRCH_WOOD_STAIRS, Material.JUNGLE_WOOD_STAIRS, Material.ACACIA_STAIRS, Material.DARK_OAK_STAIRS, Material.RED_SANDSTONE_STAIRS };
 
     public static float DistanceToGround(Player p)
     {
@@ -39,15 +39,12 @@ public class PlayerUtil {
 
     public static boolean isHalfBlock(Block b)
     {
-        for(Material bb : StairsBlocks)
+        if(b instanceof Stairs)
         {
-            if(b.getType() == bb)
-            {
-                return true;
-            }
+            return true;
         }
 
-        if(b.getType() == Material.STEP)
+        if(b instanceof Slab)
         {
             return true;
         }
@@ -107,9 +104,9 @@ public class PlayerUtil {
         return value;
     }
 
-    public static net.minecraft.server.v1_12_R1.ItemStack getRandomArmor(int inv)
+    public static net.minecraft.server.v1_15_R1.ItemStack getRandomArmor(int inv)
     {
-        net.minecraft.server.v1_12_R1.ItemStack item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.AIR.getId()));;
+        net.minecraft.server.v1_15_R1.ItemStack item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.AIR.getId()));;
         int n = rand.nextInt(6);
         switch(inv)
         {
@@ -117,19 +114,19 @@ public class PlayerUtil {
                 switch(n)
                 {
                     case 0:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.DIAMOND_HELMET.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.DIAMOND_HELMET.getId()));
                         break;
                     case 1:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.IRON_HELMET.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.IRON_HELMET.getId()));
                         break;
                     case 2:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.GOLD_HELMET.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.GOLDEN_HELMET.getId()));
                         break;
                     case 3:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.CHAINMAIL_HELMET.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.CHAINMAIL_HELMET.getId()));
                         break;
                     case 4:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.LEATHER_HELMET.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.LEATHER_HELMET.getId()));
                         break;
                 }
                 break;
@@ -137,19 +134,19 @@ public class PlayerUtil {
                 switch(n)
                 {
                     case 0:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.DIAMOND_CHESTPLATE.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.DIAMOND_CHESTPLATE.getId()));
                         break;
                     case 1:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.IRON_CHESTPLATE.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.IRON_CHESTPLATE.getId()));
                         break;
                     case 2:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.GOLD_CHESTPLATE.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.GOLDEN_CHESTPLATE.getId()));
                         break;
                     case 3:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.CHAINMAIL_CHESTPLATE.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.CHAINMAIL_CHESTPLATE.getId()));
                         break;
                     case 4:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.LEATHER_CHESTPLATE.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.LEATHER_CHESTPLATE.getId()));
                         break;
                 }
                 break;
@@ -157,19 +154,19 @@ public class PlayerUtil {
                 switch(n)
                 {
                     case 0:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.DIAMOND_LEGGINGS.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.DIAMOND_LEGGINGS.getId()));
                         break;
                     case 1:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.IRON_LEGGINGS.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.IRON_LEGGINGS.getId()));
                         break;
                     case 2:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.GOLD_LEGGINGS.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.GOLDEN_LEGGINGS.getId()));
                         break;
                     case 3:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.CHAINMAIL_LEGGINGS.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.CHAINMAIL_LEGGINGS.getId()));
                         break;
                     case 4:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.LEATHER_LEGGINGS.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.LEATHER_LEGGINGS.getId()));
                         break;
                 }
                 break;
@@ -177,19 +174,19 @@ public class PlayerUtil {
                 switch(n)
                 {
                     case 0:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.DIAMOND_BOOTS.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.DIAMOND_BOOTS.getId()));
                         break;
                     case 1:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.IRON_BOOTS.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.IRON_BOOTS.getId()));
                         break;
                     case 2:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.GOLD_BOOTS.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.GOLDEN_BOOTS.getId()));
                         break;
                     case 3:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.CHAINMAIL_BOOTS.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.CHAINMAIL_BOOTS.getId()));
                         break;
                     case 4:
-                        item = new net.minecraft.server.v1_12_R1.ItemStack(Item.getById(Material.LEATHER_BOOTS.getId()));
+                        item = new net.minecraft.server.v1_15_R1.ItemStack(Item.getById(Material.LEATHER_BOOTS.getId()));
                         break;
                 }
                 break;
@@ -256,13 +253,11 @@ public class PlayerUtil {
 
     public static boolean HalfBlockUnder(Player p)
     {
-        if (p.getLocation().getBlock().getType() == Material.STEP || p.getLocation().add(0, -1, 0).getBlock().getType() ==  Material.STEP || p.getLocation().add(0, -0.5, 0).getBlock().getType() ==  Material.STEP) {
+        if (p.getLocation().getBlock() instanceof Slab || p.getLocation().add(0, -1, 0).getBlock() instanceof Slab || p.getLocation().add(0, -0.5, 0).getBlock() instanceof Slab) {
             return true;
         }
-        for(Material mat2 : StairsBlocks) {
-            if (p.getLocation().getBlock().getType() == mat2 || p.getLocation().add(0, -1, 0).getBlock().getType() == mat2 || p.getLocation().add(0, -0.5, 0).getBlock().getType() == mat2) {
-                return true;
-            }
+        if (p.getLocation().getBlock() instanceof Stairs || p.getLocation().add(0, -1, 0).getBlock() instanceof Stairs || p.getLocation().add(0, -0.5, 0).getBlock() instanceof Stairs) {
+            return true;
         }
 
         return false;

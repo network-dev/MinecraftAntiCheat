@@ -22,16 +22,16 @@ public class MenuUtil {
     public static String Menu_Title = "AntiCheat";
     public static HashMap<Player, Boolean> HasInventoryOpen = new HashMap<>();
     public static HashMap<Player, Check> SelectedCheck = new HashMap<>();
-    private static ItemStack LIME_DYE = new ItemStack(Material.INK_SACK, 1, DyeColor.LIME.getDyeData());
-    private static ItemStack GRAY_DYE = new ItemStack(Material.INK_SACK, 1, DyeColor.GRAY.getDyeData());
-    private static ItemStack RED_DYE = new ItemStack(Material.INK_SACK, 1, DyeColor.RED.getDyeData());
-    private static ItemStack ORANGE_DYE = new ItemStack(Material.INK_SACK, 1, DyeColor.ORANGE.getDyeData());
+    private static ItemStack LIME_DYE = new ItemStack(Material.LIME_DYE, 1);
+    private static ItemStack GRAY_DYE = new ItemStack(Material.GRAY_DYE, 1);
+    private static ItemStack RED_DYE = new ItemStack(Material.RED_DYE, 1);
+    private static ItemStack ORANGE_DYE = new ItemStack(Material.ORANGE_DYE, 1);
 
 
     public static Inventory getMainInv()
     {
         Inventory inv = Bukkit.createInventory(null, 9, Menu_Title);
-        inv.setItem(1, ItemUtil.getItem(Material.WATCH, "§aChecks", "§7Here you can enable or disable all the different checks/detection methods."));
+        inv.setItem(1, ItemUtil.getItem(Material.LEGACY_WATCH, "§aChecks", "§7Here you can enable or disable all the different checks/detection methods."));
         inv.setItem(4, ItemUtil.getItem(Material.PAPER, "§6Analyze", "§cFor developers or bugs only.\n§7Creates a text file to log and analyze the movement of a player,\n§7used to create new detection methods for movement related cheats."));
         inv.setItem(7, ItemUtil.getItem(Material.COMPASS, "§cSettings", "§7Here you can change some of the behaviour of the anticheat."));
         return inv;
@@ -47,9 +47,9 @@ public class MenuUtil {
             debug_state = AlarmUtil.PlayerShouldDebug.get(p);
         }
 
-        inv.setItem(2, ItemUtil.getItem(Material.SIGN, "§7Debug", "§7[ Status: "+ (debug_state ? "§aON" : "§cOFF" ) +" §7]\n§cFor developers or bugs only.\n§7Messages to players with information about movement."));
+        inv.setItem(2, ItemUtil.getItem(Material.OAK_SIGN, "§7Debug", "§7[ Status: "+ (debug_state ? "§aON" : "§cOFF" ) +" §7]\n§cFor developers or bugs only.\n§7Messages to players with information about movement."));
         inv.setItem(3, ItemUtil.getItem(Material.ENDER_PEARL, "§7Blocking", "§7[ Status: "+ (CheckManager.Enable_SetBacks ? "§aON" : "§cOFF" ) +" §7]\n§7If enabled, the anticheat will try to block the cheats."));
-        inv.setItem(4, ItemUtil.getItem(Material.WOOD_DOOR, "§7Kicks", "§7[ Status: "+ (CheckManager.Enable_Kicks ? "§aON" : "§cOFF" ) +" §7]\n§7Kicks the player when a certain violation level is reached."));
+        inv.setItem(4, ItemUtil.getItem(Material.OAK_DOOR, "§7Kicks", "§7[ Status: "+ (CheckManager.Enable_Kicks ? "§aON" : "§cOFF" ) +" §7]\n§7Kicks the player when a certain violation level is reached."));
         inv.setItem(5, ItemUtil.getItem(Material.BOOK, "§7Messages", "§7[ Status: "+ (CheckManager.Enable_Messages ? "§aON" : "§cOFF" ) +" §7]\n§7Sends messages when the anticheat detects a cheat being used."));
         return inv;
     }
@@ -71,7 +71,7 @@ public class MenuUtil {
         inv.setItem(8, ItemUtil.getItem(RED_DYE, "§cBack"));
         inv.setItem(2, ItemUtil.getItem(Material.IRON_SWORD, "§7Combat", "§7All of the combat related checks."));
         inv.setItem(4, ItemUtil.getItem(Material.FEATHER, "§7Movement", "§7All of the movement related checks."));
-        inv.setItem(6, ItemUtil.getItem(Material.EXP_BOTTLE, "§7Other", "§7All the checks that don't have a specific category."));
+        inv.setItem(6, ItemUtil.getItem(Material.EXPERIENCE_BOTTLE, "§7Other", "§7All the checks that don't have a specific category."));
         return inv;
     }
     public static Inventory getCategoryChecksInv(CheckCategory category)

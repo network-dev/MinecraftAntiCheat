@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="AC">
-    <output-path>$PROJECT_DIR$/out/artifacts/AC</output-path>
+    <output-path>$PROJECT_DIR$/../Server/plugins</output-path>
     <root id="archive" name="AC.jar">
       <element id="module-output" name="A-C" />
     </root>
